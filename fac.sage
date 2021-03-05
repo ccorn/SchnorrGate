@@ -5,14 +5,6 @@ def svp(B):
 	A = IntegerMatrix.from_matrix(B)
 	return SVP.shortest_vector(A)
 
-def first_primes(n):
-	p = 1
-	P = []
-	while len(P) < n:
-		p = next_prime(p)
-		P += [p]
-	return P
-
 def is_smooth(x, P):
 	y = x
 	for p in P:
@@ -20,11 +12,9 @@ def is_smooth(x, P):
 			y /= p
 	return abs(y) == 1
 
-
-
 # Test if a factoring relation was indeed found.
 def test_Schnorr(N, n, prec=1000):
-	P = first_primes(n)
+	P = Primes()[:n]
 	f = list(range(1, n+1))
 	shuffle(f)
 
