@@ -29,7 +29,16 @@ def test_Schnorr(N, n, prec=1000):
 
 
 	b = svp(B)
-	e = [b[i] / sr(N*f[i]) for i in range(n)]
+	e = [b[i] / diag[i] for i in range(n)]
+	en = (b[n] - sum(e[i]*B[i, n] for i in range(n))) / B[n, n]
+	assert en in ZZ
+	if en == 1:
+		print("\nFlipping sign of SVP solution with e_{n+1} == %d" % en)
+		e = [-ei for ei in e]
+		en = -en	# just for consistency
+	elif en != -1:
+		print("\nSkipping SVP solution with e_{n+1} == %d" % en)
+		return false
 
 	u = 1
 	v = 1
