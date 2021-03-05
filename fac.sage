@@ -1,4 +1,4 @@
-from fpylll import IntegerMatrix, SVP
+from fpylll import IntegerMatrix, SVP, FPLLL
 import sys
 
 def svp(B):
@@ -58,6 +58,7 @@ except:
 	trials = 100
 
 
+FPLLL.set_external_enumerator(None)
 print("Testing Schnorr's relation finding algorithm with n=%d on RSA-moduli of %d bits, %d trials"%(n, bits, trials))
 
 successes = 0
